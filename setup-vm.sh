@@ -1,13 +1,14 @@
 #!/bin/bash
 set -eu
 
-NODE_VERSION="v0.8.15"
+NODE_VERSION="v0.10.33"
 
 echo "-> Installing apt-get packages"
 
 sudo apt-get -y install \
   build-essential \
-  curl
+  curl \
+  git
 
 echo "-> Installing node.js"
 
@@ -19,6 +20,13 @@ if [ ! -d /home/vagrant/node ]; then
   rm -rf node-${NODE_VERSION}.tar.gz
 fi
 cd node
+
+echo "-> Installing node-serialport.js"
+
+if [ ! -d /home/vagrant/node-serialport ]; then
+  git clone https://github.com/voodootikigod/node-serialport.git
+fi
+cd node-serialport
 
 # Unfortunately we can't put this into our project dir as vboxfs complains
 # about hardlinks in the tar : /

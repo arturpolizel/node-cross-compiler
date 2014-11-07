@@ -16,3 +16,7 @@ PREFIX_DIR="`pwd`/build"
 cd node
 ./configure --without-snapshot --dest-cpu=arm --dest-os=linux --prefix="${PREFIX_DIR}"
 make install --jobs=16
+
+cd node-serialport
+./configure --without-snapshot --dest-cpu=arm --dest-os=linux --prefix="${PREFIX_DIR}"
+make install --jobs=16
